@@ -135,3 +135,17 @@ But it is important to use it responsibly and ethically. Here are some guideline
 9. Document your scraping process thoroughly for replicability, transparency and accountability.
 
 10. Continuously re-evaluate your scraping program against applicable laws and ethical principles.
+11. 
+
+## My Changes
+I decided to solve option 3: Navigate to the “Multimedia” page ( https://www.thedp.com/multimedia) and scrape the headline of the latest video or photo story. In script.py, I first updated the domain link to be multimedia landing page:
+
+### req = requests.get("https://www.thedp.com/multimedia")
+
+I then inspected the website to figure out where the featured video link was located. Eventually I found this line:
+
+### <a class="medium-link" href="https://www.thedp.com/multimedia/53122fe2-0ceb-4856-8f32-0566e023c685">Bite-Sized, Ep. 7: Penn at Congressional Roundtable, WGA withheld donations, Penn &amp; Slavery Project</a>
+
+and realized that this is where the featured video link was. So I updated the script.py accordingly:
+
+### target_element = soup.find("a", class_="medium-link")
